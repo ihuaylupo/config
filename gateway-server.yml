@@ -16,10 +16,6 @@ eureka:
     serviceUrl:
       defaultZone: http://eurekaserver:8070/eureka/
       
-
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 2500
-hystrix.command.organization.execution.isolation.thread.timeoutInMilliseconds: 3000
-      
 spring:
   zipkin:
     baseUrl: http://zipkin:9411
@@ -27,6 +23,7 @@ spring:
     sampler:
       percentage: 1
   cloud:
+    loadbalancer.ribbon.enabled: false
     gateway:
         routes:
         - id: organization-service
@@ -35,7 +32,6 @@ spring:
           - Path=/organization/**
           filters:
           - RewritePath=/organization/(?<path>.*), /$\{path}
-          - Hystrix=organization
           - RemoveRequestHeader= Cookie,Set-Cookie
         - id: licensing-service
           uri: lb://licensing-service
