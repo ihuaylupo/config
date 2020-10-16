@@ -43,7 +43,7 @@ spring:
 
 
 keycloak:
-    auth-server-url: http://keycloak:8080/auth
+    auth-server-url: http://localhost:8080/auth
     bearer-only: true
     credentials:
         secret: 5988f899-a5bf-4f76-b15f-f1cd0d2c81ba
